@@ -1,11 +1,14 @@
 const express = require("express");
 const app = express();
+const dotenv = require("dotenv");
+
+dotenv.config();
 port = process.env.PORT;
 
 const cors = require("cors");
 app.use(cors());
 //  db connection
-const dbConnection = require("../db/dbConfig.js");
+const dbConnection = require("./db/dbConfig.js");
 
 // user routes middleware file
 const userRoutes = require("./routes/userRoute.js");
@@ -18,9 +21,11 @@ app.use("/api/users", userRoutes);
 
 // questions routes middleware
 const questionsRoutes = require("./routes/questionRoutes.js");
-const authMiddleware = require("../db/middleware/authMiddleware.js");
+const answersRoutes = require("./routes/answerRoutes.js");
+const authMiddleware = require("./middleware/authMiddleware.js");
 // questions routes middleware??
 app.use("/api/questions", authMiddleware, questionsRoutes);
+app.use("/api/answers/", authMiddleware, answersRoutes);
 
 // answers routes middleware ??
 async function start() {
