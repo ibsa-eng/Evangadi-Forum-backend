@@ -1,4 +1,6 @@
 const express = require("express");
+const dotenv= require("dotenv");
+dotenv.config()
 const app = express();
 port = process.env.PORT;
 
@@ -21,8 +23,12 @@ const questionsRoutes = require("./routes/questionRoutes.js");
 const authMiddleware = require("./middleware/authMiddleware");
 // questions routes middleware??
 app.use("/api/questions", authMiddleware, questionsRoutes);
+//answer route
+const answerroutes = require("./routes/getanswerroute.js");
 
-// answers routes middleware ??
+// answers routes middleware ?
+//answer route midilware
+app.use("/api/answer", authMiddleware, answerroutes);
 async function start() {
   try {
     const result = await dbConnection.execute('select "test"');
