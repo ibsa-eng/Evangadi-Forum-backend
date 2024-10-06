@@ -1,9 +1,8 @@
-const dotenv = require('dotenv')
+
 const express = require("express");
 const dotenv= require("dotenv");
 dotenv.config()
 const app = express();
-dotenv.config();
 port = process.env.PORT;
 
 const cors = require("cors");
@@ -26,7 +25,7 @@ const authMiddleware = require("./middleware/authMiddleware");
 // questions routes middleware??
 app.use("/api/questions", authMiddleware, questionsRoutes);
 //answer route
-const answerRoutes = require("./routes/getanswerroute.js");
+const answerRoutes = require("./routes/answerroute.js");
 app.use("/api/answer", authMiddleware, answerRoutes);
 
 async function start() {
