@@ -1,8 +1,11 @@
 const dotenv = require('dotenv')
 const express = require("express");
 const app = express();
-dotenv.config();
-const port = process.env.PORT;
+
+const dotenv = require("dotenv");
+dotenv.config()
+port = process.env.PORT;
+
 
 const cors = require("cors");
 app.use(cors());
@@ -34,4 +37,5 @@ async function start() {
     console.log(err.message);
   }
 }
+
 start();
