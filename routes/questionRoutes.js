@@ -14,6 +14,6 @@ router.get("/:question_id", (req, res) => {
 });
 
 // **Post a Question Route**
-router.post("/question", authMiddleware, askQuestion);
+router.post("/", authMiddleware, askQuestion);
 
 module.exports = router;
