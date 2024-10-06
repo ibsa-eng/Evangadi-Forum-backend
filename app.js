@@ -1,5 +1,7 @@
 const express = require("express");
 const app = express();
+const dotenv = require("dotenv");
+dotenv.config()
 port = process.env.PORT;
 
 const cors = require("cors");
@@ -33,4 +35,5 @@ async function start() {
     console.log(err.message);
   }
 }
+
 start();
