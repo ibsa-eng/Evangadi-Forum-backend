@@ -24,14 +24,12 @@ const authMiddleware = require("./middleware/authMiddleware");
 // questions routes middleware??
 app.use("/api/questions", authMiddleware, questionsRoutes);
 //answer route
-const answerroutes = require("./routes/getanswerroute.js");
+const answerRoutes = require("./routes/getanswerroute.js");
+app.use("/api/answer", authMiddleware, answerRoutes);
 
-// answers routes middleware ?
-//answer route midilware
-app.use("/api/answer", authMiddleware, answerroutes);
 async function start() {
   try {
-    const result = await dbConnection.execute('select "test"');
+    await dbConnection.execute('select "test"');
     console.log("database connection established");
    app.listen(port);
     console.log("listening on port " + port);
