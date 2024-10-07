@@ -4,9 +4,7 @@ const { StatusCodes } = require("http-status-codes");
 // ** POST QUESTION Handler
 async function askQuestion(req, res) {
   const { title, content } = req.body;
-
   const user_id = req.user.userid;
-  const question_id = req.user.questionid;
 
   if (!title || !content) {
     return res.status(StatusCodes.BAD_REQUEST).json({
@@ -17,16 +15,15 @@ async function askQuestion(req, res) {
 
   try {
     await dbConnection.query(
-      "INSERT INTO questions (question_id, user_id, title, content) VALUES (?, ?, ?, ?)",
-      [question_id, user_id, title, content] 
+      "INSERT INTO questions (user_id, title, content) VALUES (?, ?, ?)",
+      [user_id, title, content]
     );
 
     return res.status(StatusCodes.CREATED).json({
       message: "Question created successfully",
-      question_id: question_id, 
     });
   } catch (error) {
-    console.log(error); 
+    console.log(error);
     return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
       error: "Internal Server Error",
       message: "An unexpected error occurred.",
@@ -74,6 +71,5 @@ const SingleQuestion = async (req, res) => {
     });
   }
 };
-
 
 module.exports = { AllQuestions, SingleQuestion, askQuestion };
