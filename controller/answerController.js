@@ -32,7 +32,7 @@ const postAnswer = async (req, res) => {
 };
 
 // edit answer by id
-async function editAnswer(req, res) {
+const editAnswer = async (req, res) => {
   const answerId = req.params.answerId;
   const { answer } = req.body;
   const username = req.user.username;
@@ -71,10 +71,10 @@ async function editAnswer(req, res) {
     console.error(err);
     return res.status(500).json({ message: "Internal server error" });
   }
-}
+};
 
 // delete answer by id
-async function deleteAnswer(req, res) {
+const deleteAnswer = async (req, res) => {
   const answerId = req.params.answerId;
   const username = req.user.username;
 
@@ -107,7 +107,7 @@ async function deleteAnswer(req, res) {
   } catch (err) {
     return res.status(500).json({ message: "Internal server error" });
   }
-}
+};
 
 module.exports = {
   postAnswer,
