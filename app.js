@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
-const dotenv = require("dotenv");
 
+const dotenv = require("dotenv");
 dotenv.config();
 port = process.env.PORT;
 
@@ -32,10 +32,11 @@ async function start() {
   try {
     const result = await dbConnection.execute('select "test"');
     console.log("database connection established");
-   app.listen(port);
+    app.listen(port);
     console.log("listening on port " + port);
   } catch (err) {
     console.log(err.message);
   }
 }
+
 start();

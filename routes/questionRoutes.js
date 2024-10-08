@@ -1,11 +1,17 @@
 const express = require("express");
 const router = express.Router();
-const { AllQuestions } = require("../controller/questionController");
+const {
+  AllQuestions,
+  askQuestion,
+  SingleQuestion,
+} = require("../controller/questionController");
+const authMiddleware = require("../middleware/authMiddleware");
 
+// **Get all questions Route**
 router.get("/", AllQuestions);
-router.get("/:question_id", (req, res) => {
-  console.log(req.params);
-  question_id = req.params.question_id;
-});
+router.get("/:question_id", SingleQuestion);
+
+// **Post a Question Route**
+router.post("/", authMiddleware, askQuestion);
 
 module.exports = router;
