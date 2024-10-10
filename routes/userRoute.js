@@ -5,7 +5,7 @@ const router = express.Router();
 const authMiddleware = require("../middleware/authMiddleware");
 
 // user controller's
-const { register, login, checkUser } = require("../controller/userController");
+const { register, login, checkUser,requestOTP,resetPassword } = require("../controller/userController");
 
 // register route
 router.post("/register", register);
@@ -15,5 +15,10 @@ router.post("/login", login);
 
 // check user
 router.get("/check", authMiddleware, checkUser);
+
+// route to request an otp for password reset
+router.post("/forgot-password",requestOTP);
+// route to reset password using otp
+router.post("/reset-password",resetPassword);
 
 module.exports = router;

@@ -1,8 +1,13 @@
 const express = require("express");
-const dotenv= require("dotenv");
-dotenv.config()
+
+const dotenv = require("dotenv")
+dotenv.config();
+
+
 const app = express();
-port = process.env.PORT;
+
+const port = process.env.PORT;
+
 
 const cors = require("cors");
 app.use(cors());
@@ -17,6 +22,8 @@ app.use(express.json());
 
 // user routes middleware
 app.use("/api/users", userRoutes);
+
+
 
 // questions routes middleware
 const questionsRoutes = require("./routes/questionRoutes.js");
