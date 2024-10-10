@@ -1,7 +1,6 @@
 const dbconnection = require("../db/dbConfig");
 const { StatusCodes } = require("http-status-codes");
 
-// gete answer function
 async function getanswer(req, res) {
   const question_id = req.params.question_id; 
    try {
@@ -26,7 +25,6 @@ async function getanswer(req, res) {
 }
 
 
-// post answer
 const postAnswer = async (req, res) => {
   const { answer, question_id } = req.body;
 
