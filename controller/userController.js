@@ -34,8 +34,7 @@ const register = async (req, res) => {
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
 
-    const inserUser =
-      "INSERT INTO users(username, firstname, lastname, email, password) values (?,?,?,?,?)";
+    const inserUser = "INSERT INTO users(username, firstname, lastname, email, password) values (?,?,?,?,?)";
 
     await dbConnection.query(inserUser, [
       username,
