@@ -26,7 +26,7 @@ const authMiddleware = require("./middleware/authMiddleware.js");
 app.use("/api/questions", authMiddleware, questionsRoutes);
 
 //answer route
-const answerRoutes = require("./routes/answerroute.js");
+const answerRoutes = require("./routes/answerRoutes.js");
 app.use("/api/answer", authMiddleware, answerRoutes);
 
 async function start() {

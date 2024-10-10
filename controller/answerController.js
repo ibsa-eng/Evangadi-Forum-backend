@@ -25,10 +25,10 @@ async function getanswer(req, res) {
   }
 }
 
-=======
+
 // post answer
 const postAnswer = async (req, res) => {
-  const { answer, questionId } = req.body;
+  const { answer, question_id } = req.body;
 
   const username = req.user.username;
 
@@ -38,9 +38,9 @@ const postAnswer = async (req, res) => {
       .json({ error: "Bad request", message: "Please provide answer" });
   }
   try {
-    await dbConnection.query(
+    await dbconnection.query(
       "INSERT INTO answers (content, user_name, question_id) VALUES (?, ?, ?)",
-      [answer, username, questionId]
+      [answer, username, question_id]
     );
 
     return res
@@ -66,7 +66,7 @@ const editAnswer = async (req, res) => {
   }
 
   try {
-    const [existingAnswer] = await dbConnection.query(
+    const [existingAnswer] = await dbconnection.query(
       `SELECT user_name FROM answers WHERE answer_id = ?`,
       [answerId]
     );
@@ -85,7 +85,7 @@ const editAnswer = async (req, res) => {
         .json({ message: "You are not authorized to edit this answer" });
     }
 
-    const [result] = await dbConnection.query(
+    const [result] = await dbconnection.query(
       `UPDATE answers SET content = ? WHERE answer_id = ?`,
       [answer, answerId]
     );
