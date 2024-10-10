@@ -26,4 +26,5 @@ async function authMiddleware(req, res, next) {
       .json({ msg: "Token is not valid" });
   }
 }
+
 module.exports = authMiddleware;
