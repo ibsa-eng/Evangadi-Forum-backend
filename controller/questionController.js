@@ -34,7 +34,7 @@ async function askQuestion(req, res) {
 //** All question handler**
 const AllQuestions = async (req, res) => {
   try {
-    const selectAllQuestions = "select * from questions";
+    const selectAllQuestions = "SELECT questions.*, users.username, users.email FROM questions JOIN users ON questions.user_id = users.userid;";
     const response = await dbConnection.query(selectAllQuestions);
     if (response[0].length === 0) {
       return res.status(404).json({
