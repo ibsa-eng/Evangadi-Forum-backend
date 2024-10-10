@@ -101,7 +101,7 @@ const deleteAnswer = async (req, res) => {
   const username = req.user.username;
 
   try {
-    const [existingAnswer] = await dbConnection.query(
+    const [existingAnswer] = await dbconnection.query(
       `SELECT user_name FROM answers WHERE answer_id = ?`,
       [answerId]
     );
@@ -120,7 +120,7 @@ const deleteAnswer = async (req, res) => {
         .json({ message: "You are not authorized to delete this answer." });
     }
 
-    const [result] = await dbConnection.query(
+    const [result] = await dbconnection.query(
       `DELETE FROM answers WHERE answer_id = ?`,
       [answerId]
     );
